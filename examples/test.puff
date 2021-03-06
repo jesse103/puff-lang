@@ -1,5 +1,6 @@
-[["main_func"]] main = (): int => {
-    hello: string = "Hello, world!\n";
-    print(hello); // really hacky print function
-    return(69);
+[["main_func"]]
+main = (): int => {
+    hello: string = "your\t\tmom\n"; // yes
+    print(hello)
+    return(16);
 }
