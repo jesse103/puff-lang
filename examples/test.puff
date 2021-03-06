@@ -1,0 +1,9 @@
+[["main_func"]] main = (): int => {
+    hello: string = "Hello, world!\n";
+    print(hello);
+    asm(
+        "mov $69, %%eax", // $69 is the exit code
+        "ret"
+    );
+    return(69); // Would be easier to do this, but the above is just a test.
+}
