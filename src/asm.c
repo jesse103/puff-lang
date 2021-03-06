@@ -86,7 +86,7 @@ char* as_f_variable(ast_t* ast)
 }
 char* as_f_call(ast_t* ast) 
 {
-
+    // TODO: make less messy
     char* s = calloc(1, sizeof(char));
     if(strcmp(ast->name, "return") == 0)
     {
