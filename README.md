@@ -1,2 +1,2 @@
 # puff-lang
-C &amp; Typescript like programming language (WIP)
+C &amp; Typescript like compiled programming language (WIP)
