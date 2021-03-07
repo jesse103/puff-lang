@@ -93,12 +93,12 @@ token_t* lexer_parse_number(lexer_t* lexer)
 {
     char* value = calloc(1, sizeof(char));
 
-  while (isdigit(lexer->c))
-  {
-    value = realloc(value, (strlen(value) + 2) * sizeof(char));
-    strcat(value, (char[]){lexer->c, 0});
-    lexer_advance(lexer);
-  }
+    while (isdigit(lexer->c))
+    {
+        value = realloc(value, (strlen(value) + 2) * sizeof(char));
+        strcat(value, (char[]){lexer->c, 0});
+        lexer_advance(lexer);
+    }
 
   return init_token(value, TOKEN_INT);
 }
