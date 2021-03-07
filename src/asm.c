@@ -12,19 +12,9 @@ list_t* attributes_appending = 0;
 char* as_f_compound(ast_t* ast) 
 {
     char* value = calloc(1, sizeof(char));
-    /*for(int i = 0; i < (int)ast->children->size; i++)
-    {
-        ast_t* child_ast = (ast_t*)ast->children->items[i];
-        char* next_value = as_f(child_ast);
-        if(next_value)
-        {
-            value = realloc(value, (strlen(next_value) + 1) * sizeof(char));
-            strcat(value, next_value);
-        }
-    }*/
     for (unsigned int i = 0; i < ast->children->size; i++)
     {
-        ast_t* child_ast = (ast_t*) ast->children->items[i];
+        ast_t* child_ast = (ast_t*)ast->children->items[i];
         char* next_value = as_f(child_ast);
         value = realloc(value, (strlen(value) + strlen(next_value) + 1) * sizeof(char));
         strcat(value, next_value);
@@ -57,7 +47,7 @@ char* as_f_assignment(ast_t* ast)
             strcat(main_function, ast->name);
             selecting_main_function = false;
             ast->name = "__main";
-            printf("[ASM]: Found main function: `%s`.\n", main_function);
+            printf("[ASM Frontend]: Found main function: `%s`.\n", main_function);
         }
         const char* template = "\n.global %s\n"
                                 "%s:\n";
@@ -154,8 +144,6 @@ char* as_f_string(ast_t* ast)
 char* as_f_attribute(ast_t* ast)
 {
     attributes_appending = ast->children;
-    //for(int i = 0; i < ast->children->size; i++)
-        //printf("name: %s\n", ((ast_t*)ast->children->items[i])->string_value);
     return "";
 }
 

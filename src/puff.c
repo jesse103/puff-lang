@@ -4,11 +4,15 @@
 #include "include/parser.h"
 #include "include/asm.h"
 #include "include/visitor.h"
+#include "include/attributes.h"
 #include <stdlib.h>
 
 void puff_compile(char* src)
 {
     printf("[Puff]: Compiling..\n");
+
+    load_attributes();
+
     lexer_t* lexer = init_lexer(src);
     parser_t* parser = init_parser(lexer);
     ast_t* root = parser_parse(parser);
