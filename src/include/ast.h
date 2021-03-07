@@ -33,6 +33,8 @@ typedef struct AST_STRUCT
     stack_frame_t* stack_frame;
 } ast_t;
 
+typedef void(*ast_function)(ast_t*);
+
 ast_t* init_ast(int type);
 
 #endif

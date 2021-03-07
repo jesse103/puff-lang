@@ -26,7 +26,7 @@ void appendAttribute(ast_t* ast, ast_t* attribute)
     }
 }
 
-attribute_t* init_attribute(char* name, attribute_func function)
+attribute_t* init_attribute(char* name, ast_function function)
 {
     attribute_t* attr = calloc(1, sizeof(struct ATTRIBUTE_STRUCT));
     attr->name = name;
@@ -38,5 +38,5 @@ attribute_t* init_attribute(char* name, attribute_func function)
 void load_attributes()
 {
     loaded_attributes = init_list(sizeof(struct ATTRIBUTE_STRUCT*));
-    init_attribute("main_func", setMainFunction);
+    init_attribute("entry", setMainFunction);
 }

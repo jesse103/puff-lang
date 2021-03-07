@@ -1,10 +1,9 @@
-thing: string = "hello\n";
+str: string = "Hello world!\n";
 
-[["main_func"]]
-testing = (): int => {
-    print(thing);
+[["entry"]] testing = (): int => {
+    print(str);
     asm(
-        "mov $5, %%eax", // exit code
+        "mov $5, %%eax",
         "ret"
     );
 }

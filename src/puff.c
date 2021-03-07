@@ -5,6 +5,7 @@
 #include "include/asm.h"
 #include "include/visitor.h"
 #include "include/attributes.h"
+#include "include/builtins.h"
 #include <stdlib.h>
 
 void puff_compile(char* src)
@@ -12,6 +13,7 @@ void puff_compile(char* src)
     printf("[Puff]: Compiling..\n");
 
     load_attributes();
+    load_builtins();
 
     lexer_t* lexer = init_lexer(src);
     parser_t* parser = init_parser(lexer);

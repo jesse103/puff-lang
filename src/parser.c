@@ -39,7 +39,7 @@ bool isalpha_str(char* str)
   bool alpha = true;
   while(i < len)
   {
-    if(!isalpha(str[i]))
+    if(!isalpha(str[i++]))
       alpha = false;
   }
   return alpha;
@@ -52,7 +52,7 @@ bool isdigit_str(char* str)
   bool digit = true;
   while(i < len)
   {
-    if(!isdigit(str[i]))
+    if(!isdigit(str[i++]))
       digit = false;
   }
   return digit;

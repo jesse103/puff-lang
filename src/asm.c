@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "include/builtins.h"
 
-char* declarations;
+char* declarations; // TODO: make a list_t* of declarations and load them all in at the end, allowing us to make labels for builtin functions when called.
 char* main_function;
 bool selecting_main_function = false;
 list_t* attributes_appending = 0;
@@ -74,11 +75,23 @@ char* as_f_variable(ast_t* ast)
 {
     
 }
-char* as_f_call(ast_t* ast) 
+char* as_f_call(ast_t* ast) // TODO: make less messy
 {
-    // TODO: make less messy
     char* s = calloc(1, sizeof(char));
-    if(strcmp(ast->name, "return") == 0)
+    if(isBuiltIn(ast->name))
+    {
+        char* template = callBuiltIn(ast->name, ast); // TODO: only declare functions once in asm, so can be called globally
+        s = realloc(s, (strlen(s) + strlen(template) + 1) * sizeof(char));
+        strcat(s, template);
+    } else {
+        const char* template = "call %s\n";
+        char* ret_s = calloc(strlen(template) + 128, sizeof(char));
+        sprintf(ret_s, template, ast->name);
+        s = realloc(s, (strlen(s) + strlen(ret_s) + 1) * sizeof(char));
+        strcat(s, ret_s);
+        free(ret_s);
+    }
+    /*if(strcmp(ast->name, "return") == 0)
     {
         ast_t* first_arg = (ast_t*)ast->value->children->size ? ast->value->children->items[0] : (void*) 0;
         const char* template = "\tmov $%d, %%eax\n"
@@ -128,7 +141,7 @@ char* as_f_call(ast_t* ast)
         s = realloc(s, (strlen(s) + strlen(ret_s) + 1) * sizeof(char));
         strcat(s, ret_s);
         free(ret_s);
-    }
+    }*/
     return s;
 }
 
