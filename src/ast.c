@@ -9,5 +9,7 @@ ast_t* init_ast(int type)
         ast->children = init_list(sizeof(struct AST_STRUCT*));
     else if(type == AST_FUNCTION)
         ast->isMainFunction = false;
+    ast->int_value = 0;
+    ast->string_value = 0;
     return ast;
 }

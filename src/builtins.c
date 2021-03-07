@@ -1,5 +1,6 @@
 #include "include/builtins.h"
 #include <string.h>
+#include "include/utils.h"
 
 list_t* f_list;
 
@@ -74,6 +75,13 @@ char* _asm(ast_t* ast)
     return return_buffer;
 }
 
+int getTypeFromValues(ast_t* ast)
+{
+    if(ast->string_value) return AST_STRING;
+    if(ast->int_value) return AST_INT;
+    return 0;
+}
+
 char* print(ast_t* ast)
 {
     ast_t* first_arg = ast->value->children->size ? (ast_t*)ast->value->children->items[0] : 0;
@@ -93,9 +101,8 @@ char* print(ast_t* ast)
                 return_buffer = realloc(return_buffer, (strlen(return_buffer) + strlen(ret_s) + 1) * sizeof(char));
                 strcat(return_buffer, ret_s);
                 break;
-            }
+                }
         }
-
     }
     return return_buffer;
 }

@@ -1,9 +1,7 @@
-str: string = "Hello world!\n";
+exitCode: int = 1;
+thing: string = "Hello world!\n";
 
-[["entry"]] testing = (): int => {
-    print(str);
-    asm(
-        "mov $5, %%eax",
-        "ret"
-    );
+[["entry"]] test = (): int => {
+    print(thing);
+    return(exitCode);
 }
