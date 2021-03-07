@@ -34,7 +34,7 @@ void puff_compile(char* src)
     puff_write_file("a.s", s);
     system("as a.s -o compiled.o");
     system("ld compiled.o -o main.pf");
-    system("if [ -f \"./main.pf\" ]; then \necho \"Compiled successfully.\n\"\nelse\necho \"Failed to compile\n\" \nfi"); // too lazy for file checking
+    system("if [ -f \"./main.pf\" ]; then \necho \"Compiled successfully.\n\"\nelse\necho \"Failed to compile\n\" \nfi"); // too lazy for c file checking
 }
 
 void puff_compile_file(const char* filename)

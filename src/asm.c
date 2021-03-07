@@ -91,57 +91,6 @@ char* as_f_call(ast_t* ast) // TODO: make less messy
         strcat(s, ret_s);
         free(ret_s);
     }
-    /*if(strcmp(ast->name, "return") == 0)
-    {
-        ast_t* first_arg = (ast_t*)ast->value->children->size ? ast->value->children->items[0] : (void*) 0;
-        const char* template = "\tmov $%d, %%eax\n"
-                                "\tret\n";
-        char* ret_s = calloc(strlen(template) + 128, sizeof(char));
-        sprintf(ret_s, template, first_arg ? first_arg->int_value : 0);
-        s = realloc(s, (strlen(ret_s)+1) * sizeof(char));
-        strcat(s, ret_s);
-        free(ret_s);
-    }else if(strcmp(ast->name, "call") == 0)
-    {
-        ast_t* first_arg = (ast_t*)ast->value->children->size ? ast->value->children->items[0] : (void*) 0;
-        const char* template = "jmp %s\n";
-        char* ret_s = calloc(strlen(template) + 128, sizeof(char));
-        sprintf(ret_s, template, first_arg->string_value);
-        s = realloc(s, (strlen(s) + strlen(ret_s) + 1) * sizeof(char));
-        strcat(s, ret_s);
-        free(ret_s);
-    }else if(strcmp(ast->name, "asm") == 0)
-    {
-        for(unsigned int i = 0; i < ast->value->children->size; i++)
-        {
-            ast_t* child = (ast_t*)ast->value->children->items[i];
-            char* ret_s = calloc(strlen(child->string_value) + 128, sizeof(char));
-            sprintf(ret_s, child->string_value, child->string_value);
-            strcat(ret_s, "\n");
-            s = realloc(s, (strlen(s) + strlen(ret_s) + 1) * sizeof(char));
-            strcat(s, ret_s);
-            free(ret_s);
-        }
-    }else if(strcmp(ast->name, "print") == 0) { // TODO: actual print function instead of whatever this is
-        ast_t* first_arg = (ast_t*)ast->value->children->size ? ast->value->children->items[0] : (void*)0;
-        const char* template = "\tmov $1, \%rax\n"
-                               "\tmov $1, \%rdi\n"
-                               "\tmov $%s, \%rsi\n"
-                               "\tmov $13, \%rdx\n"
-                               "\tsyscall\n";
-        char* ret_s = calloc(strlen(template) + 128, sizeof(char));
-        sprintf(ret_s, template, first_arg->string_value, first_arg->string_value, first_arg->string_value);
-        s = realloc(s, (strlen(s) + strlen(ret_s) + 1) * sizeof(char));
-        strcat(s, ret_s);
-        free(ret_s);
-    } else {
-        const char* template = "call %s\n";
-        char* ret_s = calloc(strlen(template) + 128, sizeof(char));
-        sprintf(ret_s, template, ast->name);
-        s = realloc(s, (strlen(s) + strlen(ret_s) + 1) * sizeof(char));
-        strcat(s, ret_s);
-        free(ret_s);
-    }*/
     return s;
 }
 
