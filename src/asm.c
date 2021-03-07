@@ -109,7 +109,7 @@ char* as_f_call(ast_t* ast)
             strcat(s, ret_s);
             free(ret_s);
         }
-    }else if(strcmp(ast->name, "print") == 0) {
+    }else if(strcmp(ast->name, "print") == 0) { // TODO: actual print function instead of whatever this is
         ast_t* first_arg = (ast_t*)ast->value->children->size ? ast->value->children->items[0] : (void*)0;
         const char* template = "\tmov $1, \%rax\n"
                                "\tmov $1, \%rdi\n"
@@ -134,11 +134,12 @@ char* as_f_call(ast_t* ast)
 
 char* as_f_int(ast_t* ast)
 {
+    // TODO
 }
 
 char* as_f_string(ast_t* ast)
 {
-    
+    // TODO   
 }
 
 char* as_f_attribute(ast_t* ast)

@@ -1,6 +1,10 @@
+thing: string = "hello\n";
+
 [["main_func"]]
-main = (): int => {
-    hello: string = "your\t\tmom\n"; // yes
-    print(hello)
-    return(16);
+testing = (): int => {
+    print(thing);
+    asm(
+        "mov $5, %%eax", // exit code
+        "ret"
+    );
 }

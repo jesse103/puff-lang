@@ -23,7 +23,7 @@ void puff_compile(char* src)
 
     char* s = as_f_root(optimized_root);
 
-    char* declarations = make_declarations();
+    char* declarations = make_declarations(); // TODO: move to asm frontend
     s = realloc(s, (strlen(s) + strlen(declarations) + 1) * sizeof(char));
     strcat(s, declarations);
 
@@ -32,7 +32,7 @@ void puff_compile(char* src)
     puff_write_file("a.s", s);
     system("as a.s -o compiled.o");
     system("ld compiled.o -o main.pf");
-    system("if [ -f \"./main.pf\" ]; then \necho \"Compiled successfully.\n\"\nelse\necho \"Failed to compile\n\" \nfi");
+    system("if [ -f \"./main.pf\" ]; then \necho \"Compiled successfully.\n\"\nelse\necho \"Failed to compile\n\" \nfi"); // too lazy for file checking
 }
 
 void puff_compile_file(const char* filename)
