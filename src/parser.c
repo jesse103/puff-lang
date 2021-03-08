@@ -11,7 +11,6 @@ parser_t* init_parser(lexer_t* lexer)
   parser_t* parser = calloc(1, sizeof(struct PARSER_STRUCT));
   parser->lexer = lexer;
   parser->token = lexer_next_token(lexer);
-
   return parser;
 }
 
